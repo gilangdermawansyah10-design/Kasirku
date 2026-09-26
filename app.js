@@ -947,16 +947,18 @@ async function prosesTransaksi() {
     const keuntungan = total - modal;
 
     // SIMPAN TRANSAKSI
-    const {
-        data: transaksi,
-        error: errorTransaksi
-    } = await supabaseClient
+    const namaCustomer =
+    document.getElementById("namaCustomer").value.trim() || "Umum";
+
+const { data: transaksi, error: errorTransaksi } =
+    await supabaseClient
         .from("transaksi")
         .insert({
             user_id: user.id,
-            total: total,
-            modal: modal,
-            keuntungan: keuntungan
+            nama_customer: namaCustomer,
+            total,
+            modal,
+            keuntungan
         })
         .select()
         .single();
@@ -1059,6 +1061,7 @@ async function prosesTransaksi() {
     keranjang = [];
 
     document.getElementById("uangBayar").value = "";
+  document.getElementById("namaCustomer").value = "";
 
     tampilkanKeranjang();
 
@@ -1168,7 +1171,8 @@ function tampilkanLaporan(data) {
         tabel.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
-                <td>${tanggal}</td>
+                <td>${escapeHTML(transaksi.nama_customer || "Umum")}
+                </td>${tanggal}</td>
                 <td>${rupiah(transaksi.total)}</td>
                 <td>${rupiah(transaksi.modal)}</td>
                 <td>${rupiah(transaksi.keuntungan)}</td>
