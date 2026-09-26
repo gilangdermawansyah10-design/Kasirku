@@ -1114,73 +1114,69 @@ function tampilkanLaporan(data) {
     let keuntungan = 0;
 
     data.forEach(function(transaksi) {
-
         omzet += Number(transaksi.total) || 0;
-
         modal += Number(transaksi.modal) || 0;
-
-        keuntungan +=
-            Number(transaksi.keuntungan) || 0;
+        keuntungan += Number(transaksi.keuntungan) || 0;
     });
 
-    document.getElementById(
-        "laporanOmzet"
-    ).textContent = rupiah(omzet);
+    document.getElementById("laporanOmzet").textContent = rupiah(omzet);
+    document.getElementById("laporanModal").textContent = rupiah(modal);
+    document.getElementById("laporanUntung").textContent = rupiah(keuntungan);
+    document.getElementById("laporanTransaksi").textContent = data.length;
 
-    document.getElementById(
-        "laporanModal"
-    ).textContent = rupiah(modal);
+    const tabel = document.getElementById("tabelLaporan");
 
-    document.getElementById(
-        "laporanUntung"
-    ).textContent = rupiah(keuntungan);
-
-    document.getElementById(
-        "laporanTransaksi"
-    ).textContent = data.length;
-
-    const tabel =
-        document.getElementById("tabelLaporan");
-
-    if (!tabel) {
-        return;
-    }
+    if (!tabel) return;
 
     tabel.innerHTML = "";
 
     if (data.length === 0) {
-
         tabel.innerHTML = `
             <tr>
-                <td colspan="5" style="text-align:center;">
+                <td colspan="6" style="text-align:center;">
                     Belum ada transaksi
                 </td>
             </tr>
         `;
-
         return;
     }
 
     data.forEach(function(transaksi, index) {
 
-        const tanggal =
-            new Date(
-                transaksi.created_at
-            ).toLocaleString("id-ID");
+        const tanggal = new Date(
+            transaksi.created_at
+        ).toLocaleString("id-ID");
+
+        const namaCustomer =
+            transaksi.nama_customer || "Umum";
 
         tabel.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
-                <td>${escapeHTML(transaksi.nama_customer || "Umum")}
-                </td>${tanggal}</td>
-                <td>${rupiah(transaksi.total)}</td>
-                <td>${rupiah(transaksi.modal)}</td>
-                <td>${rupiah(transaksi.keuntungan)}</td>
+
+                <td>
+                    ${escapeHTML(namaCustomer)}
+                </td>
+
+                <td>
+                    ${tanggal}
+                </td>
+
+                <td>
+                    ${rupiah(transaksi.total)}
+                </td>
+
+                <td>
+                    ${rupiah(transaksi.modal)}
+                </td>
+
+                <td>
+                    ${rupiah(transaksi.keuntungan)}
+                </td>
             </tr>
         `;
     });
 }
-
 
 // ============================================
 // PINDAH HALAMAN
