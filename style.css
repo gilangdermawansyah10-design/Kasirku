@@ -1,0 +1,307 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ================= LOGIN ================= */
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #2563eb;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.login-box h1 {
+    margin-bottom: 5px;
+}
+
+.login-box input {
+    width: 100%;
+    margin: 8px 0;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+.login-box button {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.login-box .register {
+    background: #64748b;
+}
+
+#pesanLogin {
+    color: #dc2626;
+}
+
+
+/* ================= HEADER ================= */
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.logout {
+    background: #dc2626;
+}
+
+
+/* ================= BUTTON ================= */
+
+button {
+    border: none;
+    background: #2563eb;
+    color: white;
+
+    padding: 11px 15px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.secondary {
+    background: #64748b;
+}
+
+.danger {
+    background: #dc2626;
+}
+
+.edit {
+    background: #f59e0b;
+}
+
+
+/* ================= NAV ================= */
+
+nav {
+    background: white;
+
+    padding: 10px;
+
+    display: flex;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    border-bottom: 1px solid #ddd;
+}
+
+nav button {
+    white-space: nowrap;
+}
+
+
+/* ================= MAIN ================= */
+
+main {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+
+/* ================= DASHBOARD ================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 15px;
+}
+
+.card {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.card p {
+    font-size: 24px;
+
+    font-weight: bold;
+}
+
+
+/* ================= FORM ================= */
+
+.form-box,
+.kasir-box,
+.total-box {
+    background: white;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08);
+}
+
+.form-box input,
+.kasir-box input,
+.kasir-box select,
+.total-box input {
+    width: 100%;
+
+    padding: 12px;
+
+    margin: 7px 0;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+}
+
+
+/* ================= TABLE ================= */
+
+.table-container {
+    background: white;
+
+    border-radius: 12px;
+
+    overflow-x: auto;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08);
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 700px;
+}
+
+th,
+td {
+    padding: 12px;
+
+    border-bottom: 1px solid #ddd;
+
+    text-align: left;
+}
+
+th {
+    background: #e2e8f0;
+}
+
+
+/* ================= STOCK WARNING ================= */
+
+.stock-warning {
+    background: #fef3c7;
+
+    color: #92400e;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+}
+
+.stock-danger {
+    color: #dc2626;
+
+    font-weight: bold;
+}
+
+.stock-ok {
+    color: #16a34a;
+
+    font-weight: bold;
+}
+
+
+/* ================= MESSAGE ================= */
+
+#pesanKasir {
+    font-weight: bold;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    main {
+        padding: 12px;
+    }
+
+    header {
+        padding: 12px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .card p {
+        font-size: 20px;
+    }
+
+}

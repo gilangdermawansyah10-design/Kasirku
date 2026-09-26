@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KasirKu</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<div id="halamanLogin" class="login-container">
+
+    <div class="login-box">
+
+        <h1>KasirKu</h1>
+        <p>Login Admin</p>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email"
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+        >
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <button
+            class="register"
+            onclick="daftar()"
+        >
+            Buat Akun
+        </button>
+
+        <p id="pesanLogin"></p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= APLIKASI ================= -->
+
+<div id="aplikasi" class="hidden">
+
+    <header>
+
+        <div>
+            <h1>KasirKu</h1>
+            <small id="emailUser"></small>
+        </div>
+
+        <button
+            class="logout"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </header>
+
+
+    <!-- ================= MENU ================= -->
+
+    <nav>
+
+        <button onclick="bukaHalaman('dashboard')">
+            Dashboard
+        </button>
+
+        <button onclick="bukaHalaman('barang')">
+            Barang
+        </button>
+
+        <button onclick="bukaHalaman('kasir')">
+            Kasir
+        </button>
+
+        <button onclick="bukaHalaman('laporan')">
+            Laporan
+        </button>
+
+    </nav>
+
+
+    <main>
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard">
+
+            <h2>Dashboard</h2>
+
+            <div id="peringatanStok"></div>
+
+            <div class="dashboard-grid">
+
+                <div class="card">
+                    <h3>Total Barang</h3>
+                    <p id="jumlahBarang">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Transaksi Hari Ini</h3>
+                    <p id="jumlahTransaksi">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Omzet Hari Ini</h3>
+                    <p id="omzetHariIni">Rp0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Keuntungan Hari Ini</h3>
+                    <p id="untungHariIni">Rp0</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BARANG ================= -->
+
+        <section id="barang" class="hidden">
+
+            <h2>Data Barang</h2>
+
+            <div class="form-box">
+
+                <h3 id="judulFormBarang">
+                    Tambah Barang
+                </h3>
+
+                <input
+                    type="hidden"
+                    id="barangId"
+                >
+
+                <input
+                    type="text"
+                    id="namaBarang"
+                    placeholder="Nama barang"
+                >
+
+                <input
+                    type="number"
+                    id="hargaModal"
+                    placeholder="Harga modal"
+                >
+
+                <input
+                    type="number"
+                    id="hargaJual"
+                    placeholder="Harga jual"
+                >
+
+                <input
+                    type="number"
+                    id="stok"
+                    placeholder="Stok"
+                >
+
+                <input
+                    type="number"
+                    id="stokMinimum"
+                    placeholder="Stok minimum"
+                >
+
+                <button onclick="simpanBarang()">
+                    Simpan Barang
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="resetFormBarang()"
+                >
+                    Batal
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Modal</th>
+                            <th>Jual</th>
+                            <th>Stok</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabelBarang">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= KASIR ================= -->
+
+        <section id="kasir" class="hidden">
+
+            <h2>Kasir</h2>
+
+            <div class="kasir-box">
+
+                <select id="pilihBarang">
+                    <option value="">
+                        Pilih barang
+                    </option>
+                </select>
+
+                <input
+                    type="number"
+                    id="jumlahBeli"
+                    value="1"
+                    min="1"
+                >
+
+                <button onclick="tambahKeranjang()">
+                    Tambah ke Keranjang
+                </button>
+
+            </div>
+
+
+            <h3>Keranjang</h3>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Barang</th>
+                            <th>Harga</th>
+                            <th>Jumlah</th>
+                            <th>Subtotal</th>
+                            <th>Aksi</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabelKeranjang">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="total-box">
+
+                <h2>
+                    Total:
+                    <span id="totalKasir">
+                        Rp0
+                    </span>
+                </h2>
+
+                <input
+                    type="number"
+                    id="uangBayar"
+                    placeholder="Uang pembayaran"
+                    oninput="hitungKembalian()"
+                >
+
+                <h3>
+                    Kembalian:
+                    <span id="kembalian">
+                        Rp0
+                    </span>
+                </h3>
+
+                <button onclick="prosesTransaksi()">
+                    Bayar & Simpan Transaksi
+                </button>
+
+                <p id="pesanKasir"></p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LAPORAN ================= -->
+
+        <section id="laporan" class="hidden">
+
+            <h2>Laporan</h2>
+
+            <div class="dashboard-grid">
+
+                <div class="card">
+                    <h3>Omzet</h3>
+                    <p id="laporanOmzet">Rp0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Modal</h3>
+                    <p id="laporanModal">Rp0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Keuntungan</h3>
+                    <p id="laporanUntung">Rp0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Transaksi</h3>
+                    <p id="laporanTransaksi">0</p>
+                </div>
+
+            </div>
+
+
+            <h3>Riwayat Transaksi</h3>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal</th>
+                            <th>Total</th>
+                            <th>Modal</th>
+                            <th>Keuntungan</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabelLaporan">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+</html>
